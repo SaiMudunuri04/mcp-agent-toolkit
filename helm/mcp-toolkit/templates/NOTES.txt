@@ -1,0 +1,8 @@
+{{ .Chart.Name }} is deployed!
+Endpoint: http://{{ .Release.Name }}:{{ .Values.service.port }}/ask
+Health:   http://{{ .Release.Name }}:{{ .Values.service.port }}/health
+
+Try it:
+  kubectl port-forward svc/{{ .Release.Name }} 8000:{{ .Values.service.port }}
+  curl -X POST localhost:8000/ask -H 'Content-Type: application/json' \
+    -d '{"question": "What is the refund policy?"}'
